@@ -9,6 +9,8 @@
 		<relativePath/>
 	</parent>
 
+	<packaging>pom</packaging>
+
 	<groupId>Note</groupId>
 	<artifactId>pqd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
