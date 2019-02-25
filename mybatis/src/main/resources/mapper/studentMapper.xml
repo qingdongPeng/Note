@@ -8,5 +8,25 @@
         FROM student s;
     </select>
 
+    <select id="_selectByCoruseMax" resultMap="selectByCoruseMax">
+        SELECT * FROM student s
+        RIGHT JOIN(
+                SELECT t1.s_id, class01, class02 from
+                  (SELECT sc.s_id, sc.score as class01 FROM sc sc WHERE sc.c_id = '01' ) as t1,
+                  (SELECT sc.s_id, sc.score as class02 FROM sc sc WHERE sc.c_id = '02' ) as t2
+                WHERE t1.s_id = t2.s_id
+                AND t1.class01 > t2.class02
+            ) r
+        ON s.s_id = r.s_id;
+    </select>
+
+    <resultMap id="selectByCoruseMax" type="HashMap">
+        <result property="sId" column="s_id"/>
+        <result property="sName" column="s_name"/>
+        <result property="sBrithday" column="s_brithday"/>
+        <result property="sSex" column="s_sex"/>
+        <result property="class01" column="class01"/>
+        <result property="class02" column="class02"/>
+    </resultMap>
 
 </mapper>
